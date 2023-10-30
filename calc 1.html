@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cosmological Coupling Calculator</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        form, #result {
+            display: inline-block;
+            text-align: left;
+        }
+
+        form label {
+            display: inline-block;
+            width: 200px;
+            text-align: right;
+        }
+
+        form input[type="number"] {
+            width: 150px;
+        }
+
+        form input[type="submit"] {
+            margin-left: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cosmological Coupling Calculator</h1>
+
+    <form action="" method="post">
+        <label for="M1">Black Hole Mass 1:</label>
+        <input type="number" id="M1" name="M1" step="any" required><br><br>
+        
+        <label for="z1">Redshift 1:</label>
+        <input type="number" id="z1" name="z1" step="any" required><br><br>
+        
+        <label for="M2">Black Hole Mass 2:</label>
+        <input type="number" id="M2" name="M2" step="any" required><br><br>
+        
+        <label for="z2">Redshift 2:</label>
+        <input type="number" id="z2" name="z2" step="any" required><br><br>
+        
+        <input type="submit" value="Calculate cosmological coupling strength k">
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var M1 = parseFloat(document.getElementById('M1').value);
+            var z1 = parseFloat(document.getElementById('z1').value);
+            var M2 = parseFloat(document.getElementById('M2').value);
+            var z2 = parseFloat(document.getElementById('z2').value);
+
+            var a1 = 1 / (1 + z1);
+            var a2 = 1 / (1 + z2);
+
+            var k = Math.log(M2 / M1) / Math.log(a1 / a2);
+
+            document.getElementById('result').innerHTML = "The value of k is: " + k;
+        });
+    </script>
+</body>
+</html>
+
+
+
